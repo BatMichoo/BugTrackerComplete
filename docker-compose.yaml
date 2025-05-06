@@ -34,7 +34,7 @@ services:
       REACT_APP_PORT: ${REACT_APP_PORT}
       DOMAIN_URL: ${DOMAIN_URL}
       HTTP_SERVER_PORT: ${HTTP_SERVER_PORT}
-      JwtSecretKey: ${JWT_SECRET_KEY}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
       ConnectionString: Server=${SQL_SERVER_HOST};Database=${SQL_DATABASE};User ID=${SQL_USER};Password=${SA_PASSWORD};MultipleActiveResultSets=true;TrustServerCertificate=true;
 
@@ -42,13 +42,14 @@ services:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
+      args:
+        HTTP_SERVER_PORT: ${HTTP_SERVER_PORT}
     container_name: BugTracker_UI
     depends_on:
       - bugtrackerapi
     ports:
       - ${REACT_APP_PORT}:80
     environment:
-      HttpServerPort: ${HTTP_SERVER_PORT}
       DomainName: ${DOMAIN_URL}
 
 volumes:
