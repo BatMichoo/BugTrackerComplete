@@ -38,6 +38,9 @@ start:
 stop:
 	$(DOCKER_COMMAND) stop
 
+dev:
+	dotnet run 
+
 # ==============================================================================
 # Testing Commands
 # ==============================================================================
@@ -46,5 +49,5 @@ stop:
 
 # Target: Build, clear terminal, and run tests with coverage
 test:
-	dotnet build $(TEST_PROJECT_NAME) -v q && $(CLEAR_CMD) && dotnet test $(TEST_PROJECT_NAME) -v n --no-build /p:CollectCoverage=true
+	dotnet build $(TEST_PROJECT_NAME) -v q && $(CLEAR_CMD) && dotnet test $(TEST_PROJECT_NAME) -v n --no-build
 
