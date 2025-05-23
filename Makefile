@@ -5,9 +5,6 @@
 # Docker Compose Command
 DOCKER_COMMAND=docker compose
 
-# Test Project Configuration
-TEST_PROJECT_NAME=BackEnd/UnitTests/UnitTests.csproj
-
 # Conditional Terminal Clear Command based on OS
 # Sets 'cls' for Windows, defaults to 'clear' for Linux/macOS/WSL
 ifeq ($(OS),Windows_NT)
@@ -38,8 +35,19 @@ start:
 stop:
 	$(DOCKER_COMMAND) stop
 
-dev:
-	dotnet run 
+# ==============================================================================
+# Running Commands
+# ==============================================================================
+
+.PHONY: dev-b dev-f
+
+# Target: Start Backend
+dev-b:
+	cd BackEnd/API/ && dotnet run --property:WarningLevel=1 && cd ../..
+
+# Target: Start Frontend
+dev-f:
+	cd FrontEnd/ && npm run dev && cd ../..
 
 # ==============================================================================
 # Testing Commands
@@ -47,7 +55,7 @@ dev:
 
 .PHONY: test
 
-# Target: Build, clear terminal, and run tests with coverage
+# Target: Build, clear terminal and run tests
 test:
-	dotnet build $(TEST_PROJECT_NAME) -v q && $(CLEAR_CMD) && dotnet test $(TEST_PROJECT_NAME) -v n --no-build
+	cd BackEnd/UnitTests && dotnet build -v q && $(CLEAR_CMD) && dotnet test -v n --no-build
 
