@@ -12,8 +12,12 @@ Before you begin, ensure you have the following installed:
 
 * **Docker:** Docker is used to containerize and manage the application's services. You can download and install it from the official Docker website: [https://www.docker.com/get-started/](https://www.docker.com/get-started/)
 * **Docker Compose:** Docker Compose is a tool for defining and managing multi-container Docker applications. It is usually installed along with Docker Desktop. If you need to install it separately, follow the instructions here: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
-* **Make (Optional but Recommended):** The provided `Makefile` simplifies common Docker commands. If you don't have Make installed, you can still use the `docker-compose` commands directly. You can find installation instructions for your operating system here: [https://www.gnu.org/software/make/manual/html_node/Installation.html](https://www.gnu.org/software/make/manual/html_node/Installation.html)
-
+* **Make (Optional but Recommended):** The provided `Makefile` significantly simplifies common development tasks, including Docker commands. Running `make help` from the project root will display a quick overview of all available commands. If you don't have Make installed, you can still execute the underlying `docker compose` or `dotnet` commands directly.
+    * [Make Installation Guide](https://www.gnu.org/software/make/manual/html_node/Installation.html)
+    * **Docker Compose Version Note:** Depending on your Docker Compose version, the command used in the `Makefile` might need a slight adjustment.
+        * **Docker Compose V2 (recommended, newer syntax):** Uses `docker compose` (two words). This is the default in recent Docker Desktop versions.
+        * **Docker Compose V1 (legacy syntax):** Uses `docker-compose` (hyphenated).
+        If you encounter issues with `make` and Docker commands, check the `DOCKER_COMMAND` variable at the top of the `Makefile` and adjust it if necessary (e.g., `DOCKER_COMMAND=docker-compose`).
 ### Configuration
 
 The application relies on environment variables for configuration. You need to create a `.env` file in the root of the project directory and define the following variables:
