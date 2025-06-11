@@ -14,22 +14,22 @@ DOCKER_COMMAND=docker compose
 # Target: Build and start services in detached mode
 up:
 	@echo "Building and starting Docker services..."
-	$(DOCKER_COMMAND) up -d --build
+	@$(DOCKER_COMMAND) up -d --build
 
 # Target: Stop and remove containers, networks, and volumes
 down:
 	@echo "Stopping and removing Docker containers, networks, and volumes..."
-	$(DOCKER_COMMAND) down -v
+	@$(DOCKER_COMMAND) down -v
 
 # Target: Start existing containers
 start:
 	@echo "Starting existing Docker containers..."
-	$(DOCKER_COMMAND) start
+	@$(DOCKER_COMMAND) start
 
 # Target: Stop running containers
 stop:
 	@echo "Stopping running Docker containers..."
-	$(DOCKER_COMMAND) stop
+	@$(DOCKER_COMMAND) stop
 
 # ==============================================================================
 # Running Commands (Linux/macOS)
@@ -39,17 +39,16 @@ stop:
 
 # Target: Start Backend (Linux/macOS)
 dev-b:
-	@echo "Starting Backend API in a new GNOME Terminal tab..."
-	gnome-terminal --tab --title="Backend API" -- bash -c "cd BackEnd/API/ && dotnet run -v q; exec bash"
+	@echo "Starting Backend API in a new tab..."
+	@gnome-terminal --tab --title="Backend API" -- bash -c "cd BackEnd/API/ && dotnet run -v q; exec bash"
 
 # Target: Start Frontend (Linux/macOS)
 dev-f:
-	@echo "Starting Frontend in a new GNOME Terminal tab..."
-	gnome-terminal --tab --title="Frontend" -- bash -c "cd FrontEnd/ && npm run dev; exec bash"
+	@echo "Starting Frontend in a new tab..."
+	@gnome-terminal --tab --title="Frontend" -- bash -c "cd FrontEnd/ && npm run dev; exec bash"
 
 # Target: Start both Backend and Frontend (Linux/macOS)
 dev: dev-b dev-f
-	@echo "Backend and Frontend started in separate GNOME Terminal tabs."
 
 # ==============================================================================
 # Running Commands (Windows)
@@ -59,17 +58,16 @@ dev: dev-b dev-f
 
 # Target: Start Backend (Windows - using Command Prompt)
 dev-b-w:
-	@echo "Starting Backend API in a new Command Prompt window..."
-	start cmd.exe /k "cd BackEnd/API/ && dotnet run -v q"
+	@echo "Starting Backend API in a new window..."
+	@start cmd.exe /k "cd BackEnd/API/ && dotnet run -v q"
 
 # Target: Start Frontend (Windows - using Command Prompt)
 dev-f-w:
-	@echo "Starting Frontend in a new Command Prompt window..."
-	start cmd.exe /k "cd FrontEnd/ && npm run dev"
+	@echo "Starting Frontend in a new window..."
+	@start cmd.exe /k "cd FrontEnd/ && npm run dev"
 
 # Target: Start both Backend and Frontend (Windows)
 dev-w: dev-b-w dev-f-w
-	@echo "Backend and Frontend started in separate Command Prompt windows."
 
 # ==============================================================================
 # Testing Commands
@@ -80,7 +78,7 @@ dev-w: dev-b-w dev-f-w
 # Target: Build, clear terminal and run tests
 test:
 	@echo "Building and running Backend Unit Tests..."
-	cd BackEnd/UnitTests && dotnet build -v q --property:WarningLevel=1 && dotnet test -v n --no-build
+	@cd BackEnd/UnitTests && dotnet build -v q --property:WarningLevel=1 && dotnet test -v n --no-build
 
 # ==============================================================================
 # Help Command
