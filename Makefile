@@ -40,7 +40,7 @@ stop:
 # Target: Start Backend (Linux/macOS)
 dev-b:
 	@echo "Starting Backend API in a new tab..."
-	@gnome-terminal --tab --title="Backend API" -- bash -c "cd BackEnd/API/ && dotnet run -v q; exec bash"
+	@gnome-terminal --tab --title="Backend API" -- bash -c "cd BackEnd/API/ && dotnet run -v q --property:WarningLevel=0; exec bash"
 
 # Target: Start Frontend (Linux/macOS)
 dev-f:
@@ -59,7 +59,7 @@ dev: dev-b dev-f
 # Target: Start Backend (Windows - using Command Prompt)
 dev-b-w:
 	@echo "Starting Backend API in a new window..."
-	@start cmd.exe /k "cd BackEnd/API/ && dotnet run -v q"
+	@start cmd.exe /k "cd BackEnd/API/ && dotnet run -v q --property:WarningLevel=0"
 
 # Target: Start Frontend (Windows - using Command Prompt)
 dev-f-w:
@@ -78,7 +78,7 @@ dev-w: dev-b-w dev-f-w
 # Target: Build, clear terminal and run tests
 test:
 	@echo "Building and running Backend Unit Tests..."
-	@cd BackEnd/UnitTests && dotnet build -v q --property:WarningLevel=1 && dotnet test -v n --no-build
+	@cd BackEnd/UnitTests && dotnet build -v q --property:WarningLevel=0 && dotnet test -v n --no-build --property:WarningLevel=0 && dotnet clean -v q --property:WarningLevel=0
 
 # ==============================================================================
 # Help Command
