@@ -1,6 +1,6 @@
 [submodule "BackEnd"]
 	path = BackEnd
-	url = git@github.com/BatMichoo/BugTracker
+	url = git@github.com:BatMichoo/BugTracker
 [submodule "FrontEnd"]
 	path = FrontEnd
-	url = git@github.com/BatMichoo/BugTrackerReact
+	url = git@github.com:BatMichoo/BugTrackerReact
