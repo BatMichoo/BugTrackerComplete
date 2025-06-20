@@ -32,7 +32,6 @@ services:
         condition: service_healthy
     ports:
       - ${HTTP_SERVER_PORT}:${HTTP_SERVER_PORT}
-      - ${HTTPS_SERVER_PORT}:${HTTPS_SERVER_PORT}
     environment:
       ASPNETCORE_URLS: http://0.0.0.0:${HTTP_SERVER_PORT};
       REACT_APP_PORT: ${REACT_APP_PORT}
@@ -54,8 +53,6 @@ services:
       - bugtrackerapi
     ports:
       - ${REACT_APP_PORT}:80
-    environment:
-      DomainName: ${DOMAIN_URL}
 
 volumes:
   sql_data:
