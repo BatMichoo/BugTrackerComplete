@@ -2,7 +2,7 @@ services:
   sqlserver:
     build:
       context: ./BackEnd/
-      dockerfile: Dockerfile.sqlserver
+      dockerfile: SqlServer.Dockerfile
     container_name: BugTracker_Persistance
     environment:
       ACCEPT_EULA: "Y"
