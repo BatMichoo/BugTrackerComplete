@@ -40,7 +40,7 @@ stop:
 # Target: Start Backend (Linux/macOS)
 dev-b:
 	@echo "Starting Backend API in a new tab..."
-	@gnome-terminal --tab --title="Backend API" -- bash -c "cd BackEnd/API/ && dotnet run -v q --property:WarningLevel=0; exec bash"
+	@gnome-terminal --tab --title="Backend API" -- bash -c "cd BackEnd/API/ && dotnet watch -v q --property:WarningLevel=0; exec bash"
 
 # Target: Start Frontend (Linux/macOS)
 dev-f:
