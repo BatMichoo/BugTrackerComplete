@@ -37,17 +37,17 @@ stop:
 
 .PHONY: dev-b dev-f dev
 
-# Target: Start Backend (Linux/macOS)
+# Target: Start Backend
 dev-b:
-	@echo "Starting Backend API in a new tab..."
-	@gnome-terminal --tab --title="Backend API" -- bash -c "cd BackEnd/API/ && dotnet watch -v q --property:WarningLevel=0; exec bash"
+	@echo "Starting Backend API..."
+	@ghostty --title="Backend-API" -e fish -c "cd BackEnd/API/ && dotnet watch run -v q --property:WarningLevel=0; exec fish" &
 
-# Target: Start Frontend (Linux/macOS)
+# Target: Start Frontend
 dev-f:
-	@echo "Starting Frontend in a new tab..."
-	@gnome-terminal --tab --title="Frontend" -- bash -c "cd FrontEnd/ && npm run dev; exec bash"
+	@echo "Starting Frontend..."
+	@ghostty --title="Frontend-Web" -e fish -c "cd FrontEnd/ && npm run dev; exec fish" &
 
-# Target: Start both Backend and Frontend (Linux/macOS)
+# Target: Start both Backend and Frontend
 dev: dev-b dev-f
 
 # ==============================================================================
